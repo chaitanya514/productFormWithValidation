@@ -69,6 +69,9 @@ export default function SignIn() {
     setDetails("")
     setValidation("")
   }
+ function handleDelete(id){
+   setProducts(products.filter(product=>product.id !== id))
+ }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -110,10 +113,6 @@ export default function SignIn() {
             className="btn btn-primary"
             value = "ADD PRODUCT"
           />
-           
-         
-         
-          
         </form>
       
         <div>{products.length===0?<p>Add your first product</p>:""} </div>
@@ -121,7 +120,7 @@ export default function SignIn() {
           {products.map(product=><div>
             <li key={product.id}>
              <Product details={product} /> 
-            <button className="btn-outline btn-delete" >Delete</button>
+            <button className="btn-outline btn-delete" onClick={()=>handleDelete(product.id)}>Delete</button>
             </li>
             
           </div>)}
