@@ -47,6 +47,7 @@ export default function SignIn() {
   const classes = useStyles();
   const [name,setName] = useState("");
   const [details,setDetails] = useState("");
+  const [products,setProducts] = useState([]);
   const [validation,setValidation] = useState("");
 
   function handleFormSubmit(event){
@@ -59,6 +60,11 @@ export default function SignIn() {
       return setValidation("Please enter Product details"); 
       
     }
+    setProducts([...products,{
+      id:products.length+1,
+      name:name,
+      details,details
+    }])
     setName("")
     setDetails("")
     setValidation("")
@@ -96,25 +102,31 @@ export default function SignIn() {
          <div> <p style={{color:"red"}}>{validation}</p>
             </div>
       
-          <Button
+          <input
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
-            className={classes.submit}
-          >
-            ADD PRODUCT
-          </Button>
+            className="btn btn-primary"
+            value = "ADD PRODUCT"
+          />
+           
+         
          
           
         </form>
-        
-          
-
-        <div> <p>Add your first product</p></div>
+      
+        <div>{products.length===0?<p>Add your first product</p>:""} </div>
         <ul className="store-front">
+          {products.map(product=><div>
+            <li key={product.id}>
+             <Product details={product} /> 
+            <button className="btn-outline btn-delete" >Delete</button>
+            </li>
+            
+          </div>)}
         
-        <button className="btn-outline btn-delete" >Delete</button>
+       
             
         </ul>
 

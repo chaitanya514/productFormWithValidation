@@ -14,8 +14,8 @@ export default function Product({details}){
 
     return <div className="product">
         <div className="product-info">
-            <h2>{details}</h2>
-            <p>{details}</p>
+            <h2>{details.name}</h2>
+            <p>{details.details}</p>
         </div>
         <div className="product-buttons">
             <button className="product-sub" disabled={count === 0} onClick={handleDecrementClick}>-</button>
